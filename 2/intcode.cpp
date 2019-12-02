@@ -5,6 +5,7 @@
 #include<cstdlib>
 
 std::vector<int> read_csv(std::string filename);
+bool compute( std::vector<int>& opcode, int index);
 
 int main(){
 
@@ -18,34 +19,11 @@ int main(){
 
    // work out opcode
    for (int i=0; i<opcode.size(); i+=4){
-
-      int a, b;
-
-      if ( opcode[i] == 1 ){
-         a = opcode[opcode[i+1]];
-         b = opcode[opcode[i+2]];
-         opcode[opcode[i+3]] = a + b;
-      }
-      else if (opcode[i] == 2){
-         a = opcode[opcode[i+1]];
-         b = opcode[opcode[i+2]];
-         opcode[opcode[i+3]] = a * b;
-      }
-      else if (opcode[i] == 99){
-         break;
-      }
-      else {
-         std::cerr << "opcode must be one of [1,2,99]" << std::endl;
-         std::exit(EXIT_FAILURE);
-      }
+      if (compute(opcode, i)) break;
    }
 
    // print result
-   std::cout << opcode[0];
-   for (int i=1; i<opcode.size(); i++){
-     std::cout << "," << opcode[i];
-   }
-   std::cout << std::endl;
+   std::cout << opcode[0] << std::endl;
 
    return 0;
 
@@ -75,4 +53,34 @@ std::vector<int> read_csv(std::string filename){
    }
 
    return opcode;
+}
+
+bool compute( std::vector<int>& opcode, int index){
+   int a, b;
+   bool end = false;
+
+   // summation
+   if ( opcode[index] == 1 ){
+      a = opcode[opcode[index+1]];
+      b = opcode[opcode[index+2]];
+
+      opcode[opcode[index+3]] = a + b;
+   }
+   // multiplication
+   else if (opcode[index] == 2){
+      a = opcode[opcode[index+1]];
+      b = opcode[opcode[index+2]];
+
+      opcode[opcode[index+3]] = a * b;
+   }
+   // end program
+   else if (opcode[index] == 99){
+      end = true;
+   }
+   else {
+      std::cerr << "opcode must be one of [1,2,99]" << std::endl;
+      std::exit(EXIT_FAILURE);
+   }
+
+   return end;
 }
