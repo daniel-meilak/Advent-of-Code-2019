@@ -13,6 +13,9 @@ int main(){
    // read input into vector
    opcode = read_csv("input.txt");
 
+   opcode[1] = 12;
+   opcode[2] = 2;
+
    // work out opcode
    for (int i=0; i<opcode.size(); i+=4){
 
