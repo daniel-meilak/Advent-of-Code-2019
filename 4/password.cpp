@@ -2,6 +2,9 @@
 #include<iostream>
 #include<algorithm>
 
+
+// turns a vector of ints into an int
+// e.g. {1,2,3} becomes 123
 int vector_to_int( std::vector<int> password ){
    std::reverse(password.begin(),password.end());
 
@@ -19,11 +22,6 @@ int vector_to_int( std::vector<int> password ){
 int main(){
 
    std::vector<int> pass(6);
-   //std::vector<int> answer;
-
-   // for ( int a=1; a<=6; a++){
-   //    for ( int)
-   // }
 
    int i;
    int num = 0;
@@ -31,6 +29,7 @@ int main(){
    bool rule2 = false;
    int attempt;
 
+   // loop through every index of the vector
 
    for (pass[0]=1; pass[0]<=6; pass[0]++){
       for (pass[1] = 1; pass[1] <= 9; pass[1]++){
@@ -38,8 +37,6 @@ int main(){
             for (pass[3] = 1; pass[3] <= 9; pass[3]++){
                for (pass[4] = 1; pass[4] <= 9; pass[4]++){
                   for (pass[5] = 1; pass[5] <= 9; pass[5]++){
-
-                     //std::cout << "number: " << vector_to_int(pass) << std::endl;
 
                      // rule 1, numbers increase or stay the same
                      // as you go through the password
@@ -49,23 +46,25 @@ int main(){
                            break;
                         }
                      }
-                     //if (!rule1) continue;
-
-                     //std::cout << "rule1 is: " << rule1 << std::endl;
 
                      // rule 2, must be a double on its own
                      for (i=1; i<pass.size()-1;i++){
+                        // if prevous number matches
                         if ( pass[i] == pass[i-1] ){
+                           // and if the next doesnt match and 2nd previous is out of bounds
                            if ( (pass[i] != pass[i+1]) && (i-2<0) ){
                               rule2 = true;
                               break;
                            }
+                           // and if the next doesnt match and 2nd previous is in bounds but also doesnt match
                            else if ( (pass[i] != pass[i+1]) && (i-2>=0) && ( pass[i] != pass[i-2]) ){
                               rule2 = true;
                               break;
                            }
                         }
+                        // if the next number matches and its the penultimate number i.e. index 4
                         else if ( (pass[i] == pass[i+1]) && ( i+2 == pass.size()) ){
+                           // if the previous doesn't match
                            if ( pass[i] != pass[i-1] ){
                               rule2 = true;
                               break;
@@ -73,20 +72,18 @@ int main(){
                         }
                      }
 
-                     //std::cout << "rule2 is: " << rule2 << std::endl;
-
+                     // if both rules are satisfied
                      if (rule1 && rule2){
+                        // make the int
                         attempt = vector_to_int(pass);
+                        // check its in the limit, print and add to tally
                         if ( (attempt >= 156218) && (attempt <= 652527) ){
-                           std::cout << attempt << std::endl;
+                           //std::cout << attempt << std::endl;
                            num++;
                         }
                      }
 
-                     //std::cout << "num: is " << num << std::endl;
-
-                     //std::exit(0);
-
+                     // refresh rules for next number
                      rule1 = true;
                      rule2 = false;
 
