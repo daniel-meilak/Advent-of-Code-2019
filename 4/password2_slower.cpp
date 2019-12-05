@@ -60,8 +60,11 @@ int main(){
    int i;
    int count_part1 = 0;
    int count_part2 = 0;
-   std::vector<bool> part_1_2;
+   std::vector<bool> part_1_2(2);
    int attempt;
+   int sequence_length=0;
+   int last = 0;
+   int value;
 
    // loop through every index of the vector
 
@@ -72,7 +75,28 @@ int main(){
                for (pass[4] = 1; pass[4] <= 9; pass[4]++){
                   for (pass[5] = 1; pass[5] <= 9; pass[5]++){
 
-                     part_1_2 = check_number(pass);
+                     for (int j=0; j<pass.size(); j++){
+                        value = pass[j];
+                        // value always starts as 1 or higher
+                        if ( value < last ){
+                           // rule 2 not satisfied
+                           part_1_2 = {false,false};
+                           break;
+                        }
+                        // find a double
+                        else if ( value == last){
+                           part_1_2[0] = true;
+                           sequence_length++;
+                        }
+                        else {
+                           if ( sequence_length == 1 ){
+                              part_1_2[1] = true;
+                           }
+                           sequence_length = 0;
+                        }
+                        last = value;
+                     }
+                     part_1_2 = {part_1_2[0], sequence_length == 1 || part_1_2[1]};
 
                      if (part_1_2[0]){
                         attempt = vector_to_int(pass);
@@ -82,6 +106,9 @@ int main(){
                         attempt = vector_to_int(pass);
                         if ( attempt >= 156218 && attempt <= 652527 ) count_part2++;
                      }
+
+                     sequence_length=0;
+                     last = 0;
 
                   }
                }
