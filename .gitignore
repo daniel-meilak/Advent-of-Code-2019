@@ -1,2 +1,5 @@
 *~
 *.exe
+*.out
+test.cpp
+test_input
