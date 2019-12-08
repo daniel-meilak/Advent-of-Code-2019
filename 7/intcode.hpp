@@ -22,17 +22,19 @@ private:
    void read_opcode();
    void execute_instruction();
    std::vector<int> mode;
+   int instruction;
    bool running;
    int pos_in_memory;
-   int pos_in_input;
-   int instruction;
+
 
 public:
+   int pos_in_input;
    void run();
    void reset(std::vector<int> in);
    std::vector<int> memory;
    std::vector<int> memory_save;
    std::vector<int> input;
+   std::string status;
    int output;
    computer_t(std::string filename, std::vector<int> in);
 };
@@ -58,6 +60,7 @@ computer_t::computer_t(std::string filename, std::vector<int> in){
 
    // set required class attributes
    input = in;
+   status = "starting";
    memory_save = memory;
    pos_in_memory = 0;
    pos_in_input = 0;
@@ -144,6 +147,10 @@ void computer_t::equals(){
 }
 
 void computer_t::input_function(){
+   if ( pos_in_input >= input.size()-1){
+      running = false;
+      return;
+   }
    memory[memory[pos_in_memory+1]] = input[pos_in_input];
    pos_in_input++;
    pos_in_memory += 2;
@@ -153,10 +160,12 @@ void computer_t::output_function(){
    if ( mode[0] == 0){ output = memory[memory[pos_in_memory+1]];}
    else { output = memory[pos_in_memory+1]; }
    pos_in_memory += 2;
+   running = false;
 }
 
 void computer_t::stop(){
    running = false;
+   status = "finished";
    pos_in_memory += 1;
 }
 
@@ -207,6 +216,7 @@ void computer_t::reset(std::vector<int> in){
    pos_in_input = 0;
    pos_in_memory = 0;
    input = in;
+   status = "reset";
 }
 
 void print_memory( computer_t computer ){
