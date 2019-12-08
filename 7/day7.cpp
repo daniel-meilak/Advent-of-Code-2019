@@ -6,33 +6,34 @@
 
 int main(){
 
-   std::vector<int> phase = {5,5,5,5,5};
+   std::vector<int> phase = {5,6,7,8,9};
 
    int best_signal = 0;
    std::vector<int> best_phase;
 
-   computer_t computer("test_input", {0,0});
+   // create a starting computer point, and an amplifier of 5 computers
+   computer_t computer("input", {0});
    std::vector<computer_t> amplifier(5, computer);
 
    do {
 
+      // initialise computers with the correct phase
       for (int i=0; i<phase.size(); i++){
          amplifier[i].reset({phase[i]});
       }
 
       int output = 0;
 
+      // run amplifier grid for each phase value
       while ( amplifier[4].status != "finished" ){
          for (int i=0; i<amplifier.size(); i++){
             amplifier[i].input.push_back(output);
             amplifier[i].run();
             output = amplifier[i].output;
-            std::cout << amplifier[i].pos_in_input << std::endl;
          }
       }
 
-      std::cout << "next perm" << std::endl;
-
+      // save best outputs
       if ( output > best_signal){
          best_signal = output;
          best_phase = phase;

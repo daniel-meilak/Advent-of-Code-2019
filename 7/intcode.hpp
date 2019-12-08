@@ -147,10 +147,6 @@ void computer_t::equals(){
 }
 
 void computer_t::input_function(){
-   if ( pos_in_input >= input.size()-1){
-      running = false;
-      return;
-   }
    memory[memory[pos_in_memory+1]] = input[pos_in_input];
    pos_in_input++;
    pos_in_memory += 2;
