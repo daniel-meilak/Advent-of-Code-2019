@@ -176,9 +176,9 @@ void computer_t::output_function(){
 }
 
 void computer_t::set_relative_base(){
-   if ( mode[0] == 0){ relative_base = memory[memory[pos_in_memory+1]];}
-   else if ( mode[0] == 2 ){ relative_base = memory[memory[pos_in_memory+1]+relative_base];}
-   else if ( mode[0] == 1 ){ relative_base = memory[pos_in_memory+1];}
+   if ( mode[0] == 0){ relative_base += memory[memory[pos_in_memory+1]];}
+   else if ( mode[0] == 2 ){ relative_base += memory[memory[pos_in_memory+1]+relative_base];}
+   else if ( mode[0] == 1 ){ relative_base += memory[pos_in_memory+1];}
    pos_in_memory += 2;
 }
 
