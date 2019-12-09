@@ -22,6 +22,7 @@ private:
    void stop();
    void read_opcode();
    void execute_instruction();
+   void check_memory_size( long int memory_pos );
    std::vector<int> mode;
    long int instruction;
    bool running;
@@ -70,75 +71,80 @@ computer_t::computer_t(std::string filename, std::vector<long int> in){
    mode = {0,0,0};
 }
 
+void computer_t::check_memory_size( long int memory_pos ){
+   if ( memory_pos+1 > memory.size() ){
+      long int zero = 0;
+      memory.resize( memory_pos+1 , zero);
+   }
+}
+
 void computer_t::add(){
-   long int a,b;
+   long int a = memory[pos_in_memory+1];
+   long int b = memory[pos_in_memory+2];
 
-   if ( mode[0] == 0 ){ a = memory[memory[pos_in_memory+1]]; }
-   else if ( mode[0] == 2 ){ a = memory[memory[pos_in_memory+1]+relative_base]; }
-   else if ( mode[0] == 1 ){ a = memory[pos_in_memory+1]; }
+   if ( mode[0] == 0 ){ check_memory_size(a); a = memory[a]; }
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); a = memory[a+relative_base]; }
 
-   if ( mode[1] == 0 ){ b = memory[memory[pos_in_memory+2]]; }
-   else if ( mode[1] == 2 ){ b = memory[memory[pos_in_memory+2]+relative_base]; }
-   else if ( mode[1] == 1 ){ b = memory[pos_in_memory+2]; }
+   if ( mode[1] == 0 ){ check_memory_size(b); b = memory[b]; }
+   else if ( mode[1] == 2 ){ check_memory_size(b+relative_base); b = memory[b+relative_base]; }
 
    memory[memory[pos_in_memory+3]] = a+b;
    pos_in_memory += 4;
 }
 
 void computer_t::multiply(){
-   long int a,b;
+   long int a = memory[pos_in_memory+1];
+   long int b = memory[pos_in_memory+2];
 
-   if ( mode[0] == 0 ){ a = memory[memory[pos_in_memory+1]]; }
-   else if ( mode[0] == 2 ){ a = memory[memory[pos_in_memory+1]+relative_base]; }
-   else if ( mode[0] == 1 ){ a = memory[pos_in_memory+1]; }
+   if ( mode[0] == 0 ){ check_memory_size(a); a = memory[a]; }
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); a = memory[a+relative_base]; }
 
-
-   if ( mode[1] == 0 ){ b = memory[memory[pos_in_memory+2]]; }
-   else if ( mode[1] == 2 ){ b = memory[memory[pos_in_memory+2]+relative_base]; }
-   else if ( mode[1] == 1 ){ b = memory[pos_in_memory+2]; }
+   if ( mode[1] == 0 ){ check_memory_size(b); b = memory[b]; }
+   else if ( mode[1] == 2 ){ check_memory_size(b+relative_base); b = memory[b+relative_base]; }
 
    memory[memory[pos_in_memory+3]] = a*b;
    pos_in_memory += 4;
 }
 
 void computer_t::jump_if_true(){
-   long int a;
-   if ( mode[0] == 0 ){ a = memory[memory[pos_in_memory+1]]; }
-   else if ( mode[0] == 2 ){ a = memory[memory[pos_in_memory+1]+relative_base]; }
-   else if ( mode[0] == 1 ){ a = memory[pos_in_memory+1]; }
+   long int a = memory[pos_in_memory+1];
+   long int b = memory[pos_in_memory+2];
+
+   if ( mode[0] == 0 ){ check_memory_size(a); a = memory[a]; }
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); a = memory[a+relative_base]; }
 
    if ( a != 0 ){
-      if ( mode[1] == 0 ){ pos_in_memory = memory[memory[pos_in_memory+2]]; }
-      else if ( mode[1] == 2 ){ pos_in_memory = memory[memory[pos_in_memory+2]+relative_base]; }
-      else if ( mode[1] == 1 ){ pos_in_memory = memory[pos_in_memory+2]; }
+      if ( mode[1] == 0 ){ check_memory_size(b); pos_in_memory = memory[b]; }
+      else if ( mode[1] == 2 ){ check_memory_size(b+relative_base); pos_in_memory = memory[b+relative_base]; }
+      else if ( mode[1] == 1 ){ pos_in_memory = b; }
    }
    else { pos_in_memory += 3; }
 }
 
 void computer_t::jump_if_false(){
-   long int a;
-   if ( mode[0] == 0 ){ a = memory[memory[pos_in_memory+1]]; }
-   else if ( mode[0] == 2 ){ a = memory[memory[pos_in_memory+1]+relative_base]; }
-   else if ( mode[0] == 1 ){ a = memory[pos_in_memory+1]; }
+   long int a = memory[pos_in_memory+1];
+   long int b = memory[pos_in_memory+2];
+
+   if ( mode[0] == 0 ){ check_memory_size(a); a = memory[a]; }
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); a = memory[a+relative_base]; }
 
    if ( a == 0 ){
-      if (mode[1] == 0 ){ pos_in_memory = memory[memory[pos_in_memory+2]]; }
-      else if ( mode[1] == 2 ){ pos_in_memory = memory[memory[pos_in_memory+2]+relative_base]; }
-      else if ( mode[1] == 1 ){ pos_in_memory = memory[pos_in_memory+2]; }
+      if ( mode[1] == 0 ){ check_memory_size(b); pos_in_memory = memory[b]; }
+      else if ( mode[1] == 2 ){ check_memory_size(b+relative_base); pos_in_memory = memory[b+relative_base]; }
+      else if ( mode[1] == 1 ){ pos_in_memory = b; }
    }
    else { pos_in_memory += 3; }
 }
 
 void computer_t::less_than(){
-   long int a,b;
+   long int a = memory[pos_in_memory+1];
+   long int b = memory[pos_in_memory+2];
 
-   if ( mode[0] == 0 ){ a = memory[memory[pos_in_memory+1]]; }
-   else if ( mode[0] == 2 ){ a = memory[memory[pos_in_memory+1]+relative_base]; }
-   else if ( mode[0] == 1 ){ a = memory[pos_in_memory+1]; }
+   if ( mode[0] == 0 ){ check_memory_size(a); a = memory[a]; }
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); a = memory[a+relative_base]; }
 
-   if ( mode[1] == 0 ){ b = memory[memory[pos_in_memory+2]]; }
-   else if ( mode[1] == 2 ){ b = memory[memory[pos_in_memory+2]+relative_base]; }
-   else if ( mode[1] == 1 ){ b = memory[pos_in_memory+2]; }
+   if ( mode[1] == 0 ){ check_memory_size(b); b = memory[b]; }
+   else if ( mode[1] == 2 ){ check_memory_size(b+relative_base); b = memory[b+relative_base]; }
 
    if ( a < b ){ memory[memory[pos_in_memory+3]] = 1; }
    else { memory[memory[pos_in_memory+3]] = 0; }
@@ -146,15 +152,14 @@ void computer_t::less_than(){
 }
 
 void computer_t::equals(){
-   long int a,b;
+   long int a = memory[pos_in_memory+1];
+   long int b = memory[pos_in_memory+2];
 
-   if ( mode[0] == 0 ){ a = memory[memory[pos_in_memory+1]]; }
-   else if ( mode[0] == 2 ){ a = memory[memory[pos_in_memory+1]+relative_base]; }
-   else if ( mode[0] == 1 ){ a = memory[pos_in_memory+1]; }
+   if ( mode[0] == 0 ){ check_memory_size(a); a = memory[a]; }
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); a = memory[a+relative_base]; }
 
-   if ( mode[1] == 0 ){ b = memory[memory[pos_in_memory+2]]; }
-   else if ( mode[1] == 2 ){ b = memory[memory[pos_in_memory+2]+relative_base]; }
-   else if ( mode[1] == 1 ){ b = memory[pos_in_memory+2]; }
+   if ( mode[1] == 0 ){ check_memory_size(b); b = memory[b]; }
+   else if ( mode[1] == 2 ){ check_memory_size(b+relative_base); b = memory[b+relative_base]; }
 
    if ( a == b ){ memory[memory[pos_in_memory+3]] = 1; }
    else { memory[memory[pos_in_memory+3]] = 0; }
@@ -168,17 +173,21 @@ void computer_t::input_function(){
 }
 
 void computer_t::output_function(){
-   if ( mode[0] == 0 ){ output = memory[memory[pos_in_memory+1]];}
-   else if ( mode[0] == 2 ){ output = memory[memory[pos_in_memory+1]+relative_base];}
-   else if ( mode[0] == 1 ){ output = memory[pos_in_memory+1]; }
+   long int a = memory[pos_in_memory+1];
+
+   if ( mode[0] == 0 ){ check_memory_size(a); output = memory[a];}
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); output = memory[a+relative_base];}
+   else if ( mode[0] == 1 ){ output = a; }
    pos_in_memory += 2;
-   //running = false;
+   //55running = false;
 }
 
 void computer_t::set_relative_base(){
-   if ( mode[0] == 0){ relative_base += memory[memory[pos_in_memory+1]];}
-   else if ( mode[0] == 2 ){ relative_base += memory[memory[pos_in_memory+1]+relative_base];}
-   else if ( mode[0] == 1 ){ relative_base += memory[pos_in_memory+1];}
+   long int a = memory[pos_in_memory+1];
+
+   if ( mode[0] == 0){ check_memory_size(a); relative_base += memory[a];}
+   else if ( mode[0] == 2 ){ check_memory_size(a+relative_base); relative_base += memory[a+relative_base];}
+   else if ( mode[0] == 1 ){ relative_base += a;}
    pos_in_memory += 2;
 }
 
@@ -190,7 +199,7 @@ void computer_t::stop(){
 
 void computer_t::read_opcode(){
 
-   long int opcode = memory[pos_in_memory];
+   int opcode = memory[pos_in_memory];
    instruction = opcode%100;
 
    opcode /= 100;
