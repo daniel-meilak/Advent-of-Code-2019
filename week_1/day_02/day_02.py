@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import csv
 
@@ -26,7 +27,7 @@ def set_ab(a,b,array):
     array[2] = b
 
 # read csv into numpy array
-with open('input.txt') as file:
+with open(os.path.join(os.sys.path[0],'input')) as file:
     reader = csv.reader(file)
     y = np.array(list(reader)[0],dtype=int)
 

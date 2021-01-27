@@ -55,7 +55,9 @@
         "forward_list": "cpp",
         "set": "cpp",
         "cfenv": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "random": "cpp",
+        "bit": "cpp"
     },
     "cSpell.language": "en-GB",
     "cSpell.enableFiletypes": [
