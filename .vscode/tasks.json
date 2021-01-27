@@ -1,0 +1,56 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "G++ Build",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-g",
+				"-Wall",
+				"-std=c++17",
+				"${fileDirname}/*.cpp",
+				"${workspaceFolder}/Utils/utils.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.out"
+            ],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		},
+		{
+			"type": "cppbuild",
+			"label": "G++ Optimized Build",
+			"command": "/usr/bin/g++",
+			"args": [
+				"-g",
+				"-O3",
+				"-Wall",
+				"-std=c++17",
+				"${fileDirname}/*.cpp",
+				"${workspaceFolder}/Utils/utils.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.out"
+            ],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/g++"
+		}
+	]
+}
