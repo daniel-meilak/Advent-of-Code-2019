@@ -57,7 +57,8 @@
         "cfenv": "cpp",
         "thread": "cpp",
         "random": "cpp",
-        "bit": "cpp"
+        "bit": "cpp",
+        "unordered_set": "cpp"
     },
     "cSpell.language": "en-GB",
     "cSpell.enableFiletypes": [
