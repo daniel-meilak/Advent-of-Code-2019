@@ -4,6 +4,7 @@
 #include<fstream>
 #include<algorithm>
 #include<numeric>
+#include<cmath>
 
 std::vector<std::vector<int>> read_input(std::string filename);
 std::vector<int> direction_vector(std::vector<int> vect1, std::vector<int> vect2);
@@ -30,7 +31,7 @@ int main(){
    std::vector<std::vector<int>> asteroid_positions = read_input("input");
 
 
-   int detected = 0;
+   size_t detected = 0;
    std::vector<int> best_pos = {0,0};
    std::vector<neighbour_t> neighbour_list;
 
@@ -59,17 +60,13 @@ int main(){
       }
    }
 
-
-   //std::cout << "best_pos= " << best_pos[0] << "," << best_pos[1] << std::endl;
-
    std::sort(neighbour_list.begin(), neighbour_list.end(), [](const neighbour_t &min, const neighbour_t &max){
          return min.angle > max.angle;
       });
 
-   double angle;
    double tol = 0.001;
    int num_diff_angles = 1;
-   for (int i=0; i<neighbour_list.size()-1; i++){
+   for (size_t i=0; i<neighbour_list.size()-1; i++){
 
       neighbour_list[i].group = num_diff_angles;
       if ( (neighbour_list[i].angle < neighbour_list[i+1].angle - tol) || (neighbour_list[i].angle > neighbour_list[i+1].angle + tol) ){
@@ -77,15 +74,14 @@ int main(){
       }
    }
 
-   for (int i=0; i<neighbour_list.size(); i++){
-      std::cout << "group: " << neighbour_list[i].group
-                << "\tposition: " << neighbour_list[i].position[0] << "," << neighbour_list[i].position[01]
-                << "\t angle: " << neighbour_list[i].angle
-                << "\t distance: " << neighbour_list[i].distance << std::endl;
-   }
+   std::cout << "Answer (part 1): " << num_diff_angles << std::endl;
 
-   std::cout << "num angles: " << num_diff_angles << std::endl;
-   std::cout << "best: " << best_pos[0] << "," << best_pos[1] << std::endl;
+   for (size_t i=0; i<neighbour_list.size(); i++){
+      if (neighbour_list[i].group==200){
+         std::cout << "Answer (part 2): " << neighbour_list[i].position[0] << "0" << neighbour_list[i].position[1] << std::endl;
+         break;
+      }
+   }
 
    return 0;
 }
@@ -103,7 +99,8 @@ std::vector<std::vector<int>> read_input(std::string filename){
    std::string line;
    int i = 0;
    while (getline(myfile,line)){
-      for ( int j=0; j<line.size(); j++ ){
+      int size = line.size();
+      for ( int j=0; j<size; j++ ){
          if (line[j] == '#') asteroid_positions.push_back({j,i});
       }
       i++;

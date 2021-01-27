@@ -1,11 +1,15 @@
 #include<vector>
 #include<iostream>
 #include<algorithm>
-#include"intcode.hpp"
+#include"intcode.h"
+#include"../../Utils/utils.h"
 
 bool check_position(std::vector<std::vector<int>> positions, std::vector<int> pos);
 
 int main(){
+
+   // read input into vector of strings.
+   std::vector<long long> input = input_to_llint(read_input("input", ","));
 
    // grid of black/white, initialised as black
    std::vector<std::vector<bool>> grid(100, std::vector<bool> (100, false));
@@ -25,24 +29,24 @@ int main(){
    // vector of positions accessed
    std::vector<std::vector<int>> positions = {{50,50}};
 
-   computer_t intcode("input", {}, true);
+   computer_t comp(input, {}, true);
 
-   while (intcode.status != "finished"){
+   while (comp.status != "finished"){
 
       //std::cout << "Current pos: " << pos[0] << "," << pos[1] << std::endl;
 
       // input current grid black/white status
-      intcode.input.push_back(grid[pos[0]][pos[1]]);
+      comp.input.push_back(grid[pos[0]][pos[1]]);
 
-      intcode.run();
+      comp.run();
 
       // read colour to paint panel
-      grid[pos[0]][pos[1]] = intcode.output;
+      grid[pos[0]][pos[1]] = comp.output.back();
 
-      intcode.run();
+      comp.run();
 
       // read direction change
-      if (intcode.output == 0){
+      if (comp.output.back() == 0LL){
          dir = (dir-1)%4;
          if (dir < 0) dir += 4;
       }
@@ -58,12 +62,13 @@ int main(){
       if ( !check_position(positions, pos) ) positions.push_back(pos);
    }
 
-   std::cout << "Positions accessed: " << positions.size() << std::endl;
+   std::cout << "Answer (part 1): " << positions.size() << std::endl;
+   std::cout << "Answer (part 2): " << std::endl;
 
 
    // print grid
-   for (int i=grid.size()-1; i>=0; i--){
-      for (int j=0; j<grid.size(); j++){
+   for (int i=grid.size()-50; i>=45; i--){
+      for (size_t j=50; j<grid.size(); j++){
          if (grid[j][i]==0){
             std::cout << " ";
          }
@@ -71,7 +76,6 @@ int main(){
       }
       std::cout << std::endl;
    }
-
 }
 
 bool check_position(std::vector<std::vector<int>> positions, std::vector<int> pos){
