@@ -205,11 +205,11 @@ void computer_t::run(){
 }
 
 void computer_t::reset(std::vector<int> in){
-   memory = memory_save;
-   pos_in_input = 0;
+   memory        = memory_save;
+   pos_in_input  = 0;
    pos_in_memory = 0;
-   input = in;
-   status = "reset";
+   input         = in;
+   status        = "reset";
 }
 
 void print_memory( computer_t computer ){
