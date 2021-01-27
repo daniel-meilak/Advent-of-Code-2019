@@ -1,8 +1,6 @@
 #include<vector>
 #include<iostream>
 #include<algorithm>
-#include<chrono>
-
 
 // turns a vector of ints into an int
 // e.g. {1,2,3} becomes 123
@@ -12,7 +10,7 @@ int vector_to_int( std::vector<int> password ){
    int decimal = 1;
    int total = 0;
 
-   for (int i=0; i<password.size(); i++){
+   for (size_t i=0; i<password.size(); i++){
       total += password[i]*decimal;
       decimal *= 10;
    }
@@ -22,11 +20,8 @@ int vector_to_int( std::vector<int> password ){
 
 int main(){
 
-   auto start = std::chrono::high_resolution_clock::now();
-
    std::vector<int> pass(6);
 
-   int i;
    int part1_count = 0;
    int part2_count = 0;
    bool rule1 = true;
@@ -45,7 +40,7 @@ int main(){
 
                      // rule 1, numbers increase or stay the same
                      // as you go through the password
-                     for (i=1; i<pass.size(); i++){
+                     for (size_t i=1; i<pass.size(); i++){
                         if ( pass[i] < pass[i-1] ){
                            rule1 = false;
                            break;
@@ -53,7 +48,7 @@ int main(){
                      }
 
                      // rule 2, must be a double on its own
-                     for (i=1; i<pass.size()-1;i++){
+                     for (size_t i=1; i<pass.size()-1;i++){
                         // if prevous number matches
                         if ( pass[i] == pass[i-1] ){
                            rule3 = true;
@@ -103,13 +98,8 @@ int main(){
       }
    }
 
-   std::cout << "part1: " << part1_count << std::endl;
-   std::cout << "part2: " << part2_count << std::endl;
-
-   auto finish = std::chrono::high_resolution_clock::now();
-   std::chrono::duration<double> elapsed = finish-start;
-   std::cout << "Elapsed time: " << elapsed.count() << "s" << std::endl;
+   std::cout << "Answer (part1): " << part1_count << std::endl;
+   std::cout << "Answer (part2): " << part2_count << std::endl;
 
    return 0;
-
 }
