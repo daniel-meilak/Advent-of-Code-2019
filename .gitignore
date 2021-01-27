@@ -1,5 +1,5 @@
-*~
 *.exe
-*.out
 test.cpp
-test_input
+*.out
+output
+input_test
