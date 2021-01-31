@@ -59,7 +59,7 @@
         "random": "cpp",
         "bit": "cpp",
         "unordered_set": "cpp",
-        "*.cpp9": "cpp"
+
     },
     "cSpell.language": "en-GB",
     "cSpell.enableFiletypes": [
