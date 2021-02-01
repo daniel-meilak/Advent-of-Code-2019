@@ -18,12 +18,6 @@ struct state{
     state(point pos={0,0}, int steps=0, std::vector<bool> keys={0}): pos(pos), steps(steps), keys(keys){};
 };
 
-// point sorting in set
-bool operator< (const point &lhs, const point &rhs){
-    if (lhs.x==rhs.x){ return lhs.y < rhs.y; }
-    else { return lhs.x < rhs.x; }
-}
-
 // forward function declarations
 int bfs(const std::vector<std::string> &grid, const state &start);
 
