@@ -22,8 +22,6 @@ int main(){
         network[i].input = {i};
     }
 
-    
-
     std::cout << "Answer (part 1): " << part1(network) << std::endl;
     std::cout << "Answer (part 2): " << part2(network) << std::endl;
 
