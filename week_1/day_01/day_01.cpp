@@ -17,8 +17,8 @@ int main(){
    int total2 = 0;
 
    // calculate fuel required
-   int size = input.size();
-   for (int i=0; i < size; i++ ){
+   size_t size = input.size();
+   for (size_t i=0; i < size; i++ ){
       total1 += fuel_for_module(input[i],false);
       total2 += fuel_for_module(input[i],true );
    }
@@ -37,13 +37,9 @@ int fuel_for_module(const int &module_mass, const bool part2){
 
    if (part2){
       // no fuel required for extra fuel
-      if ( (fuel/3 - 2) <= 0 ){
-         return fuel;
-      }
+      if ( (fuel/3 - 2) <= 0 ){ return fuel; }
       // calculate fuel required for extra fuel
-      else {
-         return (fuel + fuel_for_module(fuel,part2));
-      }
+      else { return (fuel + fuel_for_module(fuel,part2)); }
    }
 
    return fuel;

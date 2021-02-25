@@ -78,17 +78,11 @@ int main(){
    int YOU_to_SAN = system[YOU_index].links + system[SAN_index].links - 2*system[join_at_index].links - 2;
    std::cout << "Answer (part 2): " << YOU_to_SAN << std::endl;
 
-   // std::cout << system[YOU_index].links << std::endl;
-   // std::cout << system[SAN_index].links << std::endl;
-   // std::cout << system[join_at_index].links << std::endl;
-
    return 0;
 }
 
 int find_planet_index( std::vector<orbit_t> system, std::string name){
-   auto it = std::find_if(system.begin(), system.end(), [system, name](orbit_t const& obj){
-      return obj.name == name;
-   });
+   auto it = std::find_if(system.begin(), system.end(), [system, name](orbit_t const& obj){ return obj.name == name; });
 
    return std::distance(system.begin(), it);
 }
