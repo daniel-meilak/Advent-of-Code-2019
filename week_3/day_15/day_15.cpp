@@ -8,16 +8,10 @@
 #include <thread>
 #include<unordered_map>
 #include"../../Utils/utils.h"
+#include"../../Utils/point.h"
 #include"intcode.h"
 
 using namespace std::chrono_literals;
-
-struct point{
-    int x,y;
-
-    point(int x_, int y_): x(x_), y(y_){};
-    point(): x(0), y(0){};
-};
 
 struct dir{
     point p;
@@ -30,28 +24,6 @@ struct output_t{
     size_t path_length;
     computer_t end_state;
 };
-
-bool operator==(const point &lhs, const point &rhs){
-    return (lhs.x==rhs.x && lhs.y==rhs.y);
-}
-
-bool operator!=(const point &lhs, const point &rhs){
-    return (lhs.x!=rhs.x || lhs.y!=rhs.y);
-}
-
-point operator+ (const point &lhs, const point &rhs){
-    return {lhs.x+rhs.x, lhs.y+rhs.y};
-}
-
-namespace std {
-    template <> struct hash<point> {
-        typedef point argument_type;
-        typedef std::size_t result_type;
-        std::size_t operator()(const point& id) const noexcept {
-            return std::hash<int>()(id.x ^ (id.y << 4));
-        }
-    };
-}
 
 // forward function declarations
 std::vector<std::vector<char>> build_map(const std::unordered_map<point,computer_t> &grid );
