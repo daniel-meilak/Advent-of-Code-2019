@@ -33,8 +33,6 @@ int main(){
 
    while (comp.status != "finished"){
 
-      //std::cout << "Current pos: " << pos[0] << "," << pos[1] << std::endl;
-
       // input current grid black/white status
       comp.input.push_back(grid[pos[0]][pos[1]]);
 
@@ -80,9 +78,5 @@ int main(){
 
 bool check_position(std::vector<std::vector<int>> positions, std::vector<int> pos){
 
-   if (std::find(positions.begin(), positions.end(), pos) != positions.end()){
-      return true;
-   }
-   else return false;
-
+   return std::find(positions.begin(), positions.end(), pos) != positions.end();
 }
