@@ -4,11 +4,11 @@
 #include<fstream>
 #include<algorithm>
 #include<numeric>
+#include<numbers> // C++20
 #include<cmath>
 
 std::vector<std::vector<int>> read_input(std::string filename);
 std::vector<int> direction_vector(std::vector<int> vect1, std::vector<int> vect2);
-constexpr double pi = 3.14159265358979323846;
 
 class neighbour_t{
 public:
@@ -21,8 +21,8 @@ public:
 
 neighbour_t::neighbour_t(std::vector<int> station, std::vector<int> asteroid){
    position = asteroid;
-   angle = std::atan2(asteroid[0]-station[0],asteroid[1]-station[1])*180/pi;
-   distance = std::sqrt( (asteroid[0]-station[0])*(asteroid[0]-station[0]) + (asteroid[1]-station[1])*(asteroid[1]-station[1]));
+   angle = std::atan2(asteroid[0]-station[0],asteroid[1]-station[1])*180/std::numbers::pi;
+   distance = std::sqrt((asteroid[0]-station[0])*(asteroid[0]-station[0]) + (asteroid[1]-station[1])*(asteroid[1]-station[1]));
 }
 
 
@@ -61,8 +61,8 @@ int main(){
    }
 
    std::sort(neighbour_list.begin(), neighbour_list.end(), [](const neighbour_t &min, const neighbour_t &max){
-         return min.angle > max.angle;
-      });
+      return min.angle > max.angle;
+   });
 
    double tol = 0.001;
    int num_diff_angles = 1;
