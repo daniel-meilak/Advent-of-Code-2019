@@ -6,6 +6,7 @@
 #include<utility>
 #include<unordered_set>
 #include"../../Utils/utils.h"
+#include"../../Utils/point.h"
 
 // sorting functions
 bool sort_by_manhattan(const std::pair<int,int> &lhs, const std::pair<int,int> &rhs){
@@ -15,30 +16,6 @@ bool sort_by_manhattan(const std::pair<int,int> &lhs, const std::pair<int,int> &
 bool sort_by_length(const std::pair<int,int> &lhs, const std::pair<int,int> &rhs){
     return lhs.second < rhs.second;
 }
-
-// position struct
-struct point{
-    int x,y;
-
-    point(int x_, int y_): x(x_), y(y_){};
-};
-
-// point equality
-bool operator==(const point &lhs, const point &rhs){
-    return (lhs.x==rhs.x && lhs.y==rhs.y);
-}
-
-// hash for storing points in unordered_set
-namespace std {
-    template <> struct hash<point> {
-        typedef point argument_type;
-        typedef std::size_t result_type;
-        std::size_t operator()(const point& id) const noexcept {
-            return std::hash<int>()(id.x ^ (id.y << 4));
-        }
-    };
-}
-
 
 int main(){
 
@@ -108,9 +85,7 @@ int main(){
         const int &y = pair.first.y;
 
         // if key exists in wires[1], lines intersect
-        if ( wires[1].count(point(x,y)) ){
-            inter.push_back( {manhattan(x,y), pair.second+wires[1][point(x,y)]} );
-        }
+        if ( wires[1].count(point(x,y)) ){ inter.push_back( {manhattan(x,y), pair.second+wires[1][point(x,y)]} ); }
     }
 
     // sort inter by manhattan dist
