@@ -49,18 +49,10 @@ int main(){
                 num_keys++;
 
                 // find keys in each quarter (part 2)
-                if      (y < height/2 && x < width/2){
-                    in_quarter[0].push_back(tile);
-                }
-                else if (y < height/2 && x > width/2){
-                    in_quarter[1].push_back(tile);
-                }
-                else if (y > height/2 && x < width/2){
-                    in_quarter[2].push_back(tile);
-                }
-                else if (y > height/2 && x > width/2){
-                    in_quarter[3].push_back(tile);
-                }
+                if      (y < height/2 && x < width/2){ in_quarter[0].push_back(tile); }
+                else if (y < height/2 && x > width/2){ in_quarter[1].push_back(tile); }
+                else if (y > height/2 && x < width/2){ in_quarter[2].push_back(tile); }
+                else if (y > height/2 && x > width/2){ in_quarter[3].push_back(tile); }
             }
         }
     }
@@ -108,9 +100,7 @@ int bfs(const std::vector<std::string> &grid, const state &start){
         frontier.pop_front();
 
         // if all keys collected, return current step count
-        if (std::find(current.keys.begin(), current.keys.end(), false)==current.keys.end()){
-            break;
-        }
+        if (std::find(current.keys.begin(), current.keys.end(), false)==current.keys.end()){ break; }
 
         for (const point &dir : dirs){
             state next = current;
