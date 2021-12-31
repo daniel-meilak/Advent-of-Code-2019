@@ -25,7 +25,13 @@ int main(){
 
     // read input into vector of strings.
     std::vector<std::string> input  = read_input("input_18" , "");
-    std::vector<std::string> input2 = read_input("input2", "");
+    std::vector<std::string> input2 = input;
+
+    // change input for part 2
+    input2[39][39]='@'; input2[39][40]='#'; input2[39][41]='@';
+    input2[40][39]='#'; input2[40][40]='#'; input2[40][41]='#';
+    input2[41][39]='@'; input2[41][40]='#'; input2[41][41]='@';
+
     int height = input.size();
     int width  = input[0].size();
 
