@@ -11,7 +11,7 @@ bool in_beam(computer_t &comp, const int x, const int y);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_llint(read_input("input", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_19", ","));
 
     // grid of bool for tractor beam area
     std::vector<std::vector<bool>> grid(50,std::vector<bool>(50,false));

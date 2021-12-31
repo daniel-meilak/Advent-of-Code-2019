@@ -27,7 +27,7 @@ int find_planet_index( std::vector<orbit_t> system, std::string name );
 int main(){
 
    // read input into vector of strings.
-   std::vector<std::string> map = read_input("input", ")");
+   std::vector<std::string> map = read_input("input_06", ")");
 
    std::vector<orbit_t> system;
 

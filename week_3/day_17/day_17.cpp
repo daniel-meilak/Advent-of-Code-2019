@@ -12,7 +12,7 @@ std::vector<long long> to_ascii(const std::string &input);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_llint(read_input("input", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_17", ","));
 
     computer_t comp(input,{},false);
     comp.run();
@@ -24,7 +24,7 @@ int main(){
     int i=0;
 
     // work through output of comp
-    for (const int &ascii : comp.output){
+    for (const auto &ascii : comp.output){
 
         switch(ascii){
             default:

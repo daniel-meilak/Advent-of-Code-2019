@@ -276,7 +276,7 @@ void computer_t::reset(std::vector<long long> in){
 }
 
 int computer_t::get_score(){
-   int score;
+   int score{0};
    for (size_t i=0; i<output.size(); i++){
       if (output[i]==-1){ score=output[i+2]; }
    }

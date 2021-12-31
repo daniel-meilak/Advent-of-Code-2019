@@ -41,11 +41,11 @@ public:
    std::list<long long> input;
    std::vector<long long> output;
    std::string status;
-   computer_t(const std::vector<long long> &opcode, std::list<long long> in, int pause_type);
+   computer_t(const std::vector<long long> &opcode, std::list<long long> in);
    computer_t(){};
 };
 
-computer_t::computer_t(const std::vector<long long> &opcode, std::list<long long> in, int pause_type){
+computer_t::computer_t(const std::vector<long long> &opcode, std::list<long long> in){
 
    // start memory with opcode instructions
    memory = opcode;

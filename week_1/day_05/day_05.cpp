@@ -10,7 +10,7 @@
 int main()
 {
    // read input into vector of strings.
-   std::vector<int> input = input_to_int(read_input("input", ","));
+   std::vector<int> input = input_to_int(read_input("input_05", ","));
 
    int in = 1;
 

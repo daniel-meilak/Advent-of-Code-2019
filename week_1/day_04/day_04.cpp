@@ -1,6 +1,7 @@
 #include<vector>
 #include<iostream>
 #include<algorithm>
+#include"../../Utils/utils.h"
 
 // turns a vector of ints into an int
 // e.g. {1,2,3} becomes 123
@@ -19,6 +20,9 @@ int vector_to_int( std::vector<int> password ){
 }
 
 int main(){
+
+   // get input
+   std::vector<int> input = input_to_int(read_input("input_04","-"));
 
    std::vector<int> pass(6);
 
@@ -53,12 +57,12 @@ int main(){
                         if ( pass[i] == pass[i-1] ){
                            rule3 = true;
                            // and if the next doesnt match and 2nd previous is out of bounds
-                           if ( (pass[i] != pass[i+1]) && (i-2<0) ){
+                           if ( (pass[i] != pass[i+1]) && (static_cast<int>(i)-2<0) ){
                               rule2 = true;
                               break;
                            }
                            // and if the next doesnt match and 2nd previous is in bounds but also doesnt match
-                           else if ( (pass[i] != pass[i+1]) && (i-2>=0) && ( pass[i] != pass[i-2]) ){
+                           else if ( (pass[i] != pass[i+1]) && (static_cast<int>(i)-2>=0) && ( pass[i] != pass[i-2]) ){
                               rule2 = true;
                               break;
                            }
@@ -79,7 +83,7 @@ int main(){
                         // make the int
                         attempt = vector_to_int(pass);
                         // check its in the limit, print and add to tally
-                        if ( (attempt >= 156218) && (attempt <= 652527) ){
+                        if ( (attempt >= input[0]) && (attempt <= input[1]) ){
                            //std::cout << attempt << std::endl;
                            part1_count++;
                            if (rule2) part2_count++;

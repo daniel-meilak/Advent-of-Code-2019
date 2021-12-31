@@ -28,7 +28,7 @@ neighbour_t::neighbour_t(std::vector<int> station, std::vector<int> asteroid){
 
 int main(){
 
-   std::vector<std::vector<int>> asteroid_positions = read_input("input");
+   std::vector<std::vector<int>> asteroid_positions = read_input("input_10");
 
 
    size_t detected = 0;

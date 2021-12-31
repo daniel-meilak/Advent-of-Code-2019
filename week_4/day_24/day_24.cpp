@@ -19,7 +19,7 @@ void rotate(vertex &v, const int &ang);
 int main(){
 
     // read input into vector of strings.
-    std::vector<std::string> input = read_input("input", "");
+    std::vector<std::string> input = read_input("input_24", "");
 
     // unique grids
     std::vector<std::vector<std::string>> uniques;
@@ -176,7 +176,7 @@ void recursive_neighbours(const std::vector<std::vector<std::string>> &grid, std
 
 // rotate coordinate about the point 2,2
 void rotate(vertex &v, const int &ang){
-    int s,c;
+    int s{0},c{0};
     int px = 2, py = 2;
 
     switch(ang){

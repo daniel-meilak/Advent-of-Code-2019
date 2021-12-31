@@ -6,7 +6,7 @@
 int main(){
 
    // read input into vector of strings.
-   std::vector<long long> input = input_to_llint(read_input("input", ","));
+   std::vector<long long> input = input_to_int<long long>(read_input("input_09", ","));
 
    // part 1
    computer_t comp(input, {1});

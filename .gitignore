@@ -3,4 +3,7 @@ test.cpp
 *.out
 output
 input_test
+in
 .vscode/*
+*.py
+build/*

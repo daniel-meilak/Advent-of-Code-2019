@@ -32,7 +32,7 @@ output_t explore_map(const point &start, computer_t comp);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_llint(read_input("input", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_15", ","));
 
     // create comp and backup state
     computer_t comp(input,{},false);

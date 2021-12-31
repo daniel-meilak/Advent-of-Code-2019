@@ -10,10 +10,10 @@ int main(){
 
    std::vector<std::string> layers;
 
-   layers = read_data("input");
+   layers = read_data("input_08");
 
    int min_0 = 100000;
-   int save_1, save_2;
+   int save_1{0}, save_2{0};
 
    for (size_t i=0; i<layers.size(); i++){
       int num_0 = 0;

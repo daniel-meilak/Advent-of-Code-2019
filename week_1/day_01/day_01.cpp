@@ -10,7 +10,7 @@ int fuel_for_module(const int &module_mass, const bool part2);
 int main(){
 
    // read input into vector of strings.
-   std::vector<int> input = input_to_int(read_input("input", ""));
+   std::vector<int> input = input_to_int(read_input("input_01", ""));
 
    // parameters
    int total1 = 0;

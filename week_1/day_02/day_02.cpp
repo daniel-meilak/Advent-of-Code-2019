@@ -9,7 +9,7 @@
 int main(){
 
    // read input into vector of strings.
-   std::vector<int> opcode = input_to_int(read_input("input", ","));
+   std::vector<int> opcode = input_to_int(read_input("input_02", ","));
 
    opcode[1] = 12;
    opcode[2] = 2;

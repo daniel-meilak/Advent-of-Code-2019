@@ -9,7 +9,7 @@ bool check_position(std::vector<std::vector<int>> positions, std::vector<int> po
 int main(){
 
    // read input into vector of strings.
-   std::vector<long long> input = input_to_llint(read_input("input", ","));
+   std::vector<long long> input = input_to_int<long long>(read_input("input_11", ","));
 
    // grid of black/white, initialised as black
    std::vector<std::vector<bool>> grid(100, std::vector<bool> (100, false));
