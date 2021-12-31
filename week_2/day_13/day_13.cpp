@@ -28,8 +28,8 @@ int main(){
         }
     }
 
-    // output screen
-    display(screen);
+    // output screen in terminal
+    // display(screen);
 
     std::cout << "Answer (part 1): " << blocks << std::endl;
 

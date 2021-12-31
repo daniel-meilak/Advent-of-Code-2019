@@ -176,8 +176,11 @@ void computer_t::inp(){
 
    // find paddle and ball pos
    int ball, paddle;
-   display(build_screen(output,ball,paddle));
-   std::this_thread::sleep_for(10ms);
+   build_screen(output,ball,paddle);
+
+   // to visualise, uncomment below line, and comment above
+   // display(build_screen(output,ball,paddle));
+   // std::this_thread::sleep_for(10ms);
 
    if      (ball < paddle){ input.push_back(-1); }
    else if (ball > paddle){ input.push_back( 1); }
@@ -294,28 +297,28 @@ void print_memory( computer_t computer ){
 // build grid output and keep track of paddle and ball x pos
 std::vector<std::vector<char>> build_screen(const std::vector<long long> &pos, int &ball, int &paddle){
 
-    std::vector<std::vector<char>> screen(20,std::vector<char>(60,' '));
+   std::vector<std::vector<char>> screen(20,std::vector<char>(60,' '));
 
-    const int size = pos.size();
-    for (int i=0; i<size; i+=3){
-        if (pos[i]==-1){ continue; }
+   const int size = pos.size();
+   for (int i=0; i<size; i+=3){
+      if (pos[i]==-1){ continue; }
 
-        switch(pos[i+2]){
-            case( 0): screen[pos[i+1]][pos[i]] = ' '; break;
-            case( 1): screen[pos[i+1]][pos[i]] = '#'; break;
-            case( 2): screen[pos[i+1]][pos[i]] = 'B'; break;
-            case( 3):
-               screen[pos[i+1]][pos[i]] = '=';
-               paddle = pos[i];
-               break;
-            case( 4):
-               screen[pos[i+1]][pos[i]] = 'O';
-               ball = pos[i];
-               break;
-        }        
-    }
+      switch(pos[i+2]){
+         case( 0): screen[pos[i+1]][pos[i]] = ' '; break;
+         case( 1): screen[pos[i+1]][pos[i]] = '#'; break;
+         case( 2): screen[pos[i+1]][pos[i]] = 'B'; break;
+         case( 3):
+            screen[pos[i+1]][pos[i]] = '=';
+            paddle = pos[i];
+            break;
+         case( 4):
+            screen[pos[i+1]][pos[i]] = 'O';
+            ball = pos[i];
+            break;
+      }        
+   }
 
-    return screen;
+   return screen;
 }
 
 #endif // INTCODE_H_
