@@ -13,7 +13,7 @@ void display_output(const std::vector<long long> &output);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_int<long long>(read_input("input_25", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_25", {","}));
 
     computer_t comp(input,{});
     comp.run();

@@ -19,7 +19,7 @@ void rotate(vertex &v, const int &ang);
 int main(){
 
     // read input into vector of strings.
-    std::vector<std::string> input = read_input("input_24", "");
+    std::vector<std::string> input = read_input("input_24");
 
     // unique grids
     std::vector<std::vector<std::string>> uniques;

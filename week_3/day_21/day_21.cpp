@@ -13,7 +13,7 @@ void to_input( computer_t &comp, const std::vector<long long> &new_input);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_int<long long>(read_input("input_21", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_21", {","}));
 
     // springscript instructions
     std::string instructions = "NOT C J\nAND D J\nNOT A T\nOR T J\nWALK";

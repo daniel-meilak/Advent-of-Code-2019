@@ -22,7 +22,7 @@ int vector_to_int( std::vector<int> password ){
 int main(){
 
    // get input
-   std::vector<int> input = input_to_int(read_input("input_04","-"));
+   std::vector<int> input = input_to_int(read_input("input_04",{"-"}));
 
    std::vector<int> pass(6);
 

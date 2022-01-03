@@ -11,7 +11,7 @@ std::vector<std::vector<char>> build_screen(const std::vector<long long> &pos);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_int<long long>(read_input("input_13", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_13", {","}));
 
     computer_t comp(input,{},false);
     comp.run();

@@ -13,7 +13,7 @@ std::vector<std::vector<int>> run_comp(computer_t &comp, std::vector<std::vector
 int main(){
 
    // read input into vector of strings.
-   std::vector<long long> input = input_to_int<long long>(read_input("input_11", ","));
+   std::vector<long long> input = input_to_int<long long>(read_input("input_11", {","}));
 
    // grid of black/white, initialised as black
    std::vector<std::vector<bool>> grid1(150, std::vector<bool> (150, false));

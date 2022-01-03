@@ -28,7 +28,7 @@ bool outer(const point &pos, const std::vector<std::string> &input);
 int main(){
 
     // read input into vector of strings.
-    std::vector<std::string> input = read_input("input_20", "");
+    std::vector<std::string> input = read_input("input_20");
 
     const int height = input.size();
     const int width  = input[0].size();

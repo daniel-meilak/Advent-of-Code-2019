@@ -11,7 +11,7 @@ void fft_fast(std::string &input);
 int main(){
 
     // read input into vector of strings.
-    std::string input = read_line("input_16", {});
+    std::string input = read_line("input_16");
 
     // number of fft iter
     int iter = 100;

@@ -12,7 +12,7 @@ long long part2(std::vector<computer_t> network);
 int main(){
 
     // read input into vector of strings.
-    std::vector<long long> input = input_to_int<long long>(read_input("input_23", ","));
+    std::vector<long long> input = input_to_int<long long>(read_input("input_23", {","}));
 
     // vector of computers initialised with input instructions
     std::vector<computer_t> network(50,computer_t(input,{}));

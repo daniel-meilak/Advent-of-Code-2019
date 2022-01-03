@@ -13,7 +13,7 @@ int main(){
    int part_2 = 0;
 
    // read input into vector of strings.
-   std::vector<int> input = input_to_int(read_input("input_07", ","));
+   std::vector<int> input = input_to_int(read_input("input_07", {","}));
 
    // create an amplifier of 5 computers
    std::vector<computer_t> amplifier(5, computer_t(input, {0}));

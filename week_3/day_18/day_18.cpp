@@ -24,7 +24,7 @@ int bfs(const std::vector<std::string> &grid, const state &start);
 int main(){
 
     // read input into vector of strings.
-    std::vector<std::string> input  = read_input("input_18" , "");
+    std::vector<std::string> input  = read_input("input_18");
     std::vector<std::string> input2 = input;
 
     // change input for part 2
