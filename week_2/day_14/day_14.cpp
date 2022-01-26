@@ -6,7 +6,7 @@
 #include<unordered_map>
 #include<utility>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 struct recp{
     int n;

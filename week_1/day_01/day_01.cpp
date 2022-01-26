@@ -2,7 +2,7 @@
 #include<fstream>
 #include<vector>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 // forward function declarations
 int fuel_for_module(const int &module_mass, const bool part2);

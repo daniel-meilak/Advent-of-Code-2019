@@ -5,7 +5,7 @@
 #include<sstream>
 #include<vector>
 #include"intcode.h"
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 int main()
 {

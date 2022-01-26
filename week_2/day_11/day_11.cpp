@@ -2,7 +2,7 @@
 #include<iostream>
 #include<algorithm>
 #include"intcode.h"
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 // directions up,right,left,down
 const std::vector<std::vector<int>> direction = {{0,1},{1,0},{0,-1},{-1,0}};

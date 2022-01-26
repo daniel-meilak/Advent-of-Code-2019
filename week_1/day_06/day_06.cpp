@@ -4,7 +4,7 @@
 #include<fstream>
 #include<cstdlib>
 #include<algorithm>
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 class orbit_t{
 public:

@@ -4,7 +4,7 @@
 #include<algorithm>
 #include<cstdlib>
 #include<cmath>
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 struct vertex{
     int f,y,x;

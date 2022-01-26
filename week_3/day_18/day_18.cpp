@@ -7,8 +7,8 @@
 #include<tuple>
 #include<list>
 #include<set>
-#include"../../Utils/utils.h"
-#include"../../Utils/point.h"
+#include"utils.h"
+#include"point.h"
 
 struct state{
     point pos;

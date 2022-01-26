@@ -3,7 +3,7 @@
 #include<string>
 #include<algorithm>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 #include"intcode.h"
 
 std::vector<long long> to_ascii(const std::string &command);

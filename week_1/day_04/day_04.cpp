@@ -1,7 +1,7 @@
 #include<vector>
 #include<iostream>
 #include<algorithm>
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 // turns a vector of ints into an int
 // e.g. {1,2,3} becomes 123

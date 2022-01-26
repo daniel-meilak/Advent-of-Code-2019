@@ -4,7 +4,7 @@
 #include<string>
 #include<algorithm>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 #include"intcode.h"
 
 std::list<long long> to_ascii(const std::string &command);

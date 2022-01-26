@@ -1,7 +1,7 @@
 #include<iostream>
 #include<chrono>
 #include"intcode.h"
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 int main(){
 

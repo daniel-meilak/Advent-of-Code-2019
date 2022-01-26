@@ -5,7 +5,7 @@
 #include<numeric>
 #include<cstdlib>
 #include<ranges>
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 void new_stack(std::vector<int> &deck);
 void cut(std::vector<int> &deck, const int &n);

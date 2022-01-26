@@ -3,7 +3,7 @@
 #include<string>
 #include<algorithm>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 #include"intcode.h"
 
 long long part1(std::vector<computer_t> network);

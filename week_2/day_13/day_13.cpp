@@ -4,7 +4,7 @@
 #include<algorithm>
 #include<cstdlib>
 #include"intcode.h"
-#include"../../Utils/utils.h"
+#include"utils.h"
 
 std::vector<std::vector<char>> build_screen(const std::vector<long long> &pos);
 

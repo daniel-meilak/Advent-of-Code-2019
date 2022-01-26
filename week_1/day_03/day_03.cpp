@@ -5,8 +5,8 @@
 #include<cstdlib>
 #include<utility>
 #include<unordered_set>
-#include"../../Utils/utils.h"
-#include"../../Utils/point.h"
+#include"utils.h"
+#include"point.h"
 
 // sorting functions
 bool sort_by_manhattan(const std::pair<int,int> &lhs, const std::pair<int,int> &rhs){

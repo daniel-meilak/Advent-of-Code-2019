@@ -3,7 +3,7 @@
 #include<string>
 #include<algorithm>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 #include"intcode.h"
 
 bool in_beam(computer_t &comp, const int x, const int y);

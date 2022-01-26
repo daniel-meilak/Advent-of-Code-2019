@@ -3,7 +3,7 @@
 #include<vector>
 #include<sstream>
 #include<cstdlib>
-#include"../../Utils/utils.h"
+#include"utils.h"
 #include"intcode.h"
 
 int main(){

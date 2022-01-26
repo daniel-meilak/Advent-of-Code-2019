@@ -7,3 +7,6 @@ in
 .vscode/*
 *.py
 build/*
+out/*
+.vs/*
+CMakeSettings.json

@@ -8,8 +8,8 @@
 #include<set>
 #include<list>
 #include<unordered_map>
-#include"../../Utils/utils.h"
-#include"../../Utils/point.h"
+#include"utils.h"
+#include"point.h"
 
 struct path{
     point pos;
