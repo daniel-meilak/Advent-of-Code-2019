@@ -2,6 +2,7 @@
 #include<iostream>
 #include<fstream>
 #include<cstdlib>
+#include<string>
 
 //std::vector<std::vector<std::string>> read_data(filename);
 std::vector<std::string> read_data(std::string filename);

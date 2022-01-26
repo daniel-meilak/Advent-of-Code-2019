@@ -117,7 +117,7 @@ std::vector<int> direction_vector(std::vector<int> vect1, std::vector<int> vect2
    a = vect2[0]-vect1[0];
    b = vect2[1]-vect1[1];
 
-   c = std::__gcd(a,b);
+   c = std::gcd(a,b);
 
    return {a/abs(c),b/abs(c)};
 }
