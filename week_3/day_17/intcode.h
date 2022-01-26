@@ -24,12 +24,12 @@ private:
    void read_opcode();
    void execute_instruction();
    std::vector<int> mode;
-   long instruction;
+   long long instruction;
    bool running;
    bool pause;
    int  pos_in_memory;
    int  last_pos_inp;
-   long rb;
+   long long rb;
 
 
 public:
